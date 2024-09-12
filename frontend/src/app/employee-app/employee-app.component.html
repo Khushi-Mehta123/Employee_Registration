@@ -1,0 +1,109 @@
+<nav class="navbar navbar-light bg-light justify-content-between">
+  <a class="navbar-brand">Employee Registration</a>
+  <form class="form-inline"></form>
+</nav>
+
+<nav class="navbar navbar-light bg-white justify-content-between">
+  <a class="navbar-brand">Employee Management</a>
+
+  <span>
+    <form class="form-inline d-flex align-items-center">
+      <div class="input-group">
+        <div class="form-outline" data-mdb-input-init>
+          <input type="search" id="form1" class="form-control" placeholder="Search" name = "search" [(ngModel)]="searchstring" />
+          <!-- <label class="form-label" for="form1">Search</label> -->
+        </div>
+        <!-- <button type="button" class="btn btn-primary" data-mdb-ripple-init>
+          <i class="fas fa-search"></i>
+         </button> -->
+      </div>
+    </form>
+      <button (click)="onAddEmployee()" class="btn btn-outline-success my-2 my-sm-0 ml-2 d-flex align-items-center" type="button">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+          <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
+        </svg>
+        Add
+      </button>
+
+  </span>
+
+</nav>
+
+<div class="custom-line"></div>
+
+<div class="row">
+  <div class="col-md-3" *ngFor="let item of AllEmployees | searchPipes : searchstring">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">{{item.name}}</h5>
+        <p class="card-text"> {{item.position}} </p>
+
+        <button class="badge " [ngClass]="{
+          'bg-success' : item.dept=='Design',
+          'bg-danger' : item.dept=='Development'
+        }">
+          {{item.dept}}</button>
+
+        <div class="custom-line1"></div>
+        <button class="btn btn-outline-warning my-2 my-sm-0 btn1" (click)="updateEmployee(item)"
+        type="button">Edit</button>
+        <button class="btn btn-outline-danger my-2 my-sm-0 btn1" (click)="deleteEmployee(item._id,item.name)"
+         type="button">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade show" [class.show]="showModal">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+      <div class="modal-header">
+
+          <h5 class="modal-title" *ngIf="!editMode">Add Employee</h5>
+          <h5 class="modal-title" *ngIf="editMode">Update Employee</h5>
+
+          <button (click)="onCloseModal()" type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+          </button>
+      </div>
+
+      <form [formGroup]="empForm" (ngSubmit)="onEmpSubmit()">
+          <div class="modal-body">
+              <div class="form-group">
+                  <label class="label">Enter Name</label>
+                  <input type="text" class="form-control" formControlName="name" placeholder="Enter your name">
+                  <small *ngIf="!empForm.get('name')!.valid && empForm.get('name')!.touched" class="form-text text-danger">Please Enter Name.</small>
+              </div>
+
+              <div class="form-group">
+                  <label class="label">Enter position</label>
+                  <input type="text" class="form-control" formControlName="position" placeholder="Enter your Position">
+                  <small *ngIf="!empForm.get('position')!.valid && empForm.get('position')!.touched" class="form-text text-danger">Please Enter position.</small>
+              </div>
+
+              <div class="form-group">
+                <label class="label">Select Department</label>
+                <div class="dropdown-wrapper">
+                  <select class="form-control" formControlName="dept">
+                    <option value="">Select Department</option>
+                    <option *ngFor="let dept of departments" [value]="dept"> {{ dept }}</option>
+                  </select>
+                  <button class="dropdown-button" tabindex="-1"></button>
+                </div>
+                <small *ngIf="!empForm.get('dept')!.valid && empForm.get('dept')!.touched" class="form-text text-danger">Please Select Department.</small>
+              </div>
+
+              <div class="form-group">
+                  <label class="label">Enter Salary</label>
+                  <input type="text" class="form-control" formControlName="salary">
+                  <small *ngIf="!empForm.get('salary')!.valid && empForm.get('salary')!.touched" class="form-text text-danger">Please Enter salary.</small>
+              </div>
+          </div>
+          <div class="modal-footer">
+              <button type="button" (click)="onCloseModal()" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
+      </form>
+      </div>
+  </div>
+</div>

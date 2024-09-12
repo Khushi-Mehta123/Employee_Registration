@@ -1,0 +1,108 @@
+.navbar {
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+/* Add custom padding and margin to the navbar brand */
+.navbar-brand {
+  padding-left: 15px;
+}
+
+/* Add custom padding and margin to the form */
+.form {
+  margin-right: 15px;
+}
+
+/* Add custom padding and margin to the button */
+.button {
+  padding: 10px 20px;
+  margin-left: 10px;
+}
+
+.custom-line {
+  border: 0;
+  height: 1px;
+  background: lightgray; /* Light black color */
+  margin: 20px 20px; /* Top & bottom margin: 20px; left & right margin: 50px */
+}
+
+
+.custom-line1 {
+  border: 0;
+  height: 1px;
+  background: lightgray;
+  margin: 20px 0;
+}
+
+.row{
+  margin: 20px 0;
+
+}
+.card{
+  margin-bottom: 20px;
+}
+
+.btn1{
+  margin-right: 20px;
+}
+
+.modal.fade.show {
+  display: block;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.form-group {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+}
+
+.form-group select {
+  width: 100%;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  appearance: none;
+  background-color: #fff;
+}
+
+.form-group select:focus {
+  outline: none;
+  border-color: #66afe9;
+  box-shadow: 0 0 5px rgba(102, 175, 233, 0.6);
+}
+
+.form-group .dropdown-button {
+  position: absolute;
+  right: 10px;
+  top: 70%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  pointer-events: none;
+}
+
+.form-group .dropdown-button::after {
+  content: '\25BC'; /* Down arrow icon */
+  font-size: 16px;
+  color: #666;
+}
+
+.label{
+  margin: 3px;
+}
+
+.form-inline {
+  display: flex;
+  align-items: center;
+}
+
+.btn-outline-success {
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+}
+
+
+
